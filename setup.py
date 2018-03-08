@@ -1,10 +1,14 @@
-from distutils.core import setup
-from distutils.extension import Extension
+try:
+    from setuptools import setup
+    from setuptools import Extension
+except ImportError:
+    from distutils.core import setup
+    from distutils.extension import Extension
 from Cython.Distutils import build_ext
 ext_modules = [
     Extension("pdist",
               ["pdist.pyx", 'cdist.c'],
-              library_dirs=['.'])
+			  runtime_library_dirs=[])
 ]
 setup(
     name="Demos",

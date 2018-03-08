@@ -21,12 +21,13 @@ install:
 
 # building python extension calling a function from shared C library
 pdist.so:	pdist.pyx setup.py cdist.c
-	python setup.py build_ext --inplace --rpath=.
+	python setup.py build_ext --inplace
 
 # running a Python test
 test:	pdist.so
 #	PYTHONPATH=. python tests/test.py
-	PYTHONPATH=. coverage run tests/test.py
+	python tests/test.py
+#	PYTHONPATH=. coverage run tests/test.py
 # the following is just for comparison
 # buiding a C test calling a function from C library
 dync: main.c libcdist.so
